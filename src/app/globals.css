@@ -80,3 +80,34 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.gradient-text {
+  background: linear-gradient(90deg, #ff6347, #ff4500, #ff8c00); /* Define your gradient colors */
+  -webkit-background-clip: text; /* Clip background to the text */
+  -webkit-text-fill-color: transparent; /* Make the text transparent to show the gradient */
+  background-clip: text; /* For non-webkit browsers */
+  text-fill-color: transparent; /* Fallback */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #ff6347;
+}
+
+html *::-webkit-scrollbar-thumb:hover {
+  background-color: #ff6347;
+}
+
+html *::-webkit-scrollbar-track {
+  background-color: transparent;
+}

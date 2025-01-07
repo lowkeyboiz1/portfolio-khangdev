@@ -1,6 +1,7 @@
 'use client'
 
 import { Hero } from '@/components/Hero'
+import { MySkills } from '@/components/MySkills'
 import { Projects } from '@/components/Projects'
 import TextRevealByWord from '@/components/ui/text-reveal'
 import { Header } from '@/layouts/header'
@@ -59,6 +60,7 @@ export default function Home() {
           <TextRevealByWord text='My mission is to bridge the gap between design and development, ensuring a harmonious and cohesive user experience.' />
         </div>
       </div>
+      <MySkills />
       <Projects />
     </div>
   )
