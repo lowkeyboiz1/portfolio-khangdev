@@ -4,7 +4,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <header className='mx-auto flex w-full max-w-[1200px] items-center justify-between px-10 py-8'>
+    <header className='py-8 page flex-between'>
       <p>
         <Diamond className='size-[30px]' />
       </p>
