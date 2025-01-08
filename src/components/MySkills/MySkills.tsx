@@ -1,20 +1,18 @@
 'use client'
 import { motion } from 'framer-motion'
-import React from 'react'
 
-import JavascriptIcon from '@/assets/langsAndTools/javascript.svg'
-import TypeScriptIcon from '@/assets/langsAndTools/typescript.svg'
+import CssIcon from '@/assets/langsAndTools/css.svg'
 import FigmaIcon from '@/assets/langsAndTools/figma.svg'
 import HtmlIcon from '@/assets/langsAndTools/html.svg'
+import JavascriptIcon from '@/assets/langsAndTools/javascript.svg'
 import NodeIcon from '@/assets/langsAndTools/nodejs.svg'
 import SassIcon from '@/assets/langsAndTools/sass.svg'
-import CssIcon from '@/assets/langsAndTools/css.svg'
 import TanstackIcon from '@/assets/langsAndTools/tanstack-query.svg'
+import TypeScriptIcon from '@/assets/langsAndTools/typescript.svg'
 
+import NextIcon from '@/assets/libbrariesAndFrameworks/nextjs.svg'
 import ReactIcon from '@/assets/libbrariesAndFrameworks/react.svg'
 import ReduxIcon from '@/assets/libbrariesAndFrameworks/redux.svg'
-import NextIcon from '@/assets/libbrariesAndFrameworks/nextjs.svg'
-// import NextUiIcon from '@/assets/libbrariesAndFrameworks/nextui.png'
 import TailwindIcon from '@/assets/libbrariesAndFrameworks/tailwindcss.svg'
 // import ShadcnIcon from '@/assets/libbrariesAndFrameworks/shadcn.png'
 import ZustandIcon from '@/assets/libbrariesAndFrameworks/zustand.svg'
@@ -82,17 +80,17 @@ const MySkills = () => {
       name: 'Tailwind',
       image: TailwindIcon
     },
-    // {
-    //   id: 11,
-    //   name: 'Next UI',
-    //   image: NextUiIcon
-    // },
+    {
+      id: 11,
+      name: 'Next UI',
+      image: '/nextui.png'
+    },
 
-    // {
-    //   id: 13,
-    //   name: 'Shadcn',
-    //   image: ShadcnIcon
-    // },
+    {
+      id: 13,
+      name: 'Shadcn',
+      image: '/shadcn.png'
+    },
     {
       id: 14,
       name: 'Redux',
