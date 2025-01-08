@@ -1,5 +1,6 @@
 'use client'
 
+import { Donations } from '@/components/Donations'
 import { Hero } from '@/components/Hero'
 import { MySkills } from '@/components/MySkills'
 import { Projects } from '@/components/Projects'
@@ -38,14 +39,14 @@ export default function Home() {
       {isCursorVisible && (
         <>
           <div
-            className='pointer-events-none fixed h-4 w-4 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-white'
+            className='pointer-events-none fixed z-[100] h-4 w-4 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-white'
             style={{
               left: `${position.x}px`,
               top: `${position.y}px`
             }}
           />
           <div
-            className='pointer-events-none fixed size-10 -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[0.5px] border-[#6f6f6f]'
+            className='pointer-events-none fixed z-[100] size-10 -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[0.5px] border-[#6f6f6f]'
             style={{
               left: `${slowPosition.x}px`,
               top: `${slowPosition.y}px`
@@ -61,7 +62,13 @@ export default function Home() {
         </div>
       </div>
       <MySkills />
+      <div className='flex flex-col gap-4'>
+        <div className='z-10 flex min-h-64 items-center justify-center'>
+          <TextRevealByWord text='I have a strong obsession for attention to detail.' />
+        </div>
+      </div>
       <Projects />
+      <Donations />
     </div>
   )
 }

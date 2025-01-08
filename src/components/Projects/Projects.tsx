@@ -10,19 +10,19 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Aceternity UI',
-      href: 'https://ui.aceternity.com',
-      description: 'Customizable Tailwind CSS and Framer Motion Components.'
+      title: 'Trello Clone',
+      href: 'https://trello.aceternity.com',
+      description: 'A Trello clone built with Fullstack (Next.js, Tailwind CSS, ExpressJS, NextUI, MongoDB).'
     },
     {
-      title: 'Portfolio Website',
-      href: 'https://portfolio.dev',
-      description: 'A portfolio website for showcasing my projects and skills.'
+      title: 'Vua Thợ Website',
+      href: 'https://vuatho.com',
+      description: 'Vua Thợ is a company website I developed to showcase our projects and services.'
     },
     {
-      title: 'E-commerce Platform',
-      href: 'https://shop.example.com',
-      description: 'An e-commerce platform for selling products online.'
+      title: 'Youtube Clone',
+      href: 'https://youtube.aceternity.com',
+      description: 'A Youtube clone built with Fullstack (React.js, Tailwind CSS, Nodejs, ExpressJS, MongoDB).'
     },
     {
       title: 'Weather App',

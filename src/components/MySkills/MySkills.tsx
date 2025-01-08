@@ -1,4 +1,7 @@
+'use client'
+import { motion } from 'framer-motion'
 import React from 'react'
+
 import JavascriptIcon from '@/assets/langsAndTools/javascript.svg'
 import TypeScriptIcon from '@/assets/langsAndTools/typescript.svg'
 import FigmaIcon from '@/assets/langsAndTools/figma.svg'
@@ -128,10 +131,10 @@ const SkillCard = ({ title, items }: { title: string; items: { id: number; name:
     <div className='space-y-6'>
       <p className='text-lg font-medium tracking-widest'>{title}</p>
       <div className='flex gap-10'>
-        {items.map((item) => (
-          <div key={item.name} className='h-14'>
+        {items.map((item, index) => (
+          <motion.div initial={{ opacity: 0, x: 100 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: 0.1 * index }} key={item.name} className='h-14'>
             <AnimatedTooltip item={item} />
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

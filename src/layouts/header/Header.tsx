@@ -1,16 +1,13 @@
-import { Menu } from 'lucide-react'
-import { Diamond } from 'lucide-react'
-import React from 'react'
+import { AnimatedMenuToggle } from '@/components/AnimatedMenuToggle'
+import Image from 'next/image'
 
 const Header = () => {
   return (
-    <header className='py-8 page flex-between'>
-      <p>
-        <Diamond className='size-[30px]' />
-      </p>
-      <div className='flex items-center gap-2'>
-        <Menu className='size-[30px]' />
+    <header className='sticky top-0 z-50 pt-8 backdrop-blur-sm page flex-between'>
+      <div className='h-20'>
+        <Image src='/logo.png' alt='vika dev logo' width={100} height={100} className='size-full object-cover' />
       </div>
+      <AnimatedMenuToggle />
     </header>
   )
 }
