@@ -14,9 +14,9 @@ import TanstackIcon from '@/assets/langsAndTools/tanstack-query.svg'
 import ReactIcon from '@/assets/libbrariesAndFrameworks/react.svg'
 import ReduxIcon from '@/assets/libbrariesAndFrameworks/redux.svg'
 import NextIcon from '@/assets/libbrariesAndFrameworks/nextjs.svg'
-import NextUiIcon from '@/assets/libbrariesAndFrameworks/nextui.png'
+// import NextUiIcon from '@/assets/libbrariesAndFrameworks/nextui.png'
 import TailwindIcon from '@/assets/libbrariesAndFrameworks/tailwindcss.svg'
-import ShadcnIcon from '@/assets/libbrariesAndFrameworks/shadcn.png'
+// import ShadcnIcon from '@/assets/libbrariesAndFrameworks/shadcn.png'
 import ZustandIcon from '@/assets/libbrariesAndFrameworks/zustand.svg'
 
 import MongoIcon from '@/assets/db/mongodb.svg'
@@ -82,17 +82,17 @@ const MySkills = () => {
       name: 'Tailwind',
       image: TailwindIcon
     },
-    {
-      id: 11,
-      name: 'Next UI',
-      image: NextUiIcon
-    },
+    // {
+    //   id: 11,
+    //   name: 'Next UI',
+    //   image: NextUiIcon
+    // },
 
-    {
-      id: 13,
-      name: 'Shadcn',
-      image: ShadcnIcon
-    },
+    // {
+    //   id: 13,
+    //   name: 'Shadcn',
+    //   image: ShadcnIcon
+    // },
     {
       id: 14,
       name: 'Redux',
