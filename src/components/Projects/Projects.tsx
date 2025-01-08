@@ -25,9 +25,9 @@ const Projects = () => {
       description: 'A Youtube clone built with Fullstack (React.js, Tailwind CSS, Nodejs, ExpressJS, MongoDB).'
     },
     {
-      title: 'Weather App',
-      href: 'https://weather.example.com',
-      description: 'A weather app for checking the current weather and forecast.'
+      title: 'Shop T-Shirt 3D',
+      href: 'https://shop.aceternity.com',
+      description: 'A 3D shop for T-Shirt.'
     },
     {
       title: 'Task Manager',
