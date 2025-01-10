@@ -53,7 +53,6 @@ export default function Home() {
     return () => window.removeEventListener('resize', updateDimensions)
   }, [])
 
-  console.log({ dimensions })
   return (
     <div className={`flex flex-col gap-10 bg-black text-white ${isCursorVisible ? 'cursor-none' : 'cursor-default'} `}>
       <Menu />

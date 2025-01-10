@@ -89,10 +89,6 @@ body {
   text-fill-color: transparent; /* Fallback */
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 html *::-webkit-scrollbar {
   width: 8px;
   height: 8px;

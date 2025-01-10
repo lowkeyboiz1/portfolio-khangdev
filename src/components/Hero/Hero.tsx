@@ -79,9 +79,9 @@ const Hero = () => {
     })
   }
   return (
-    <div id='home' className='grid gap-10 space-y-10 py-10 page lg:grid-cols-3 2xl:py-44' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+    <div id='home' className='grid justify-center gap-10 space-y-10 py-10 page lg:grid-cols-3 lg:justify-start 2xl:py-44' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
       <motion.div initial={{ opacity: 0, x: -100 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }} className='col-span-2 space-y-6'>
-        <h1 className='relative z-20 mt-6 max-w-7xl bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 bg-clip-text py-6 text-4xl font-semibold text-transparent dark:from-neutral-800 dark:via-white dark:to-white md:text-4xl lg:text-6xl'>
+        <h1 className='3xl:7xl relative z-20 mt-6 max-w-7xl bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 bg-clip-text py-6 text-4xl font-semibold text-transparent dark:from-neutral-800 dark:via-white dark:to-white md:text-4xl lg:text-5xl xl:text-6xl'>
           Hi, I&apos;m <Cover>Vika</Cover>, <br />a{' '}
           <span className='relative'>
             <span className='text-white'>Frontend Developer</span>
@@ -93,6 +93,19 @@ const Hero = () => {
             />
           </span>
         </h1>
+        <motion.div
+          ref={containerRef}
+          className='relative w-full'
+          initial={{ opacity: 0, x: -100, scale: 0.5, rotate: -45 }}
+          animate={{ opacity: 1, x: 0, scale: 1, rotate: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <div className='flex w-full items-center justify-center overflow-hidden rounded-2xl border-2 lg:hidden'>
+            <div className='size-full'>
+              <Image src='/hero.jpg' alt='hero' width={360} height={360} className='size-full object-cover' />
+            </div>
+          </div>
+        </motion.div>
         <div className='flex items-center gap-5'>
           {socialLinks.map((link) => (
             <MagneticWrapper key={link.name}>
@@ -119,7 +132,7 @@ const Hero = () => {
           width={360}
           height={360}
           minScratchPercentage={70}
-          className='flex w-full items-center justify-center overflow-hidden rounded-2xl border-2'
+          className='hidden w-full items-center justify-center overflow-hidden rounded-2xl border-2 lg:flex'
           onComplete={handleComplete}
           gradientColors={['#FFA07A', '#FFA68D', '#FFD39B']}
         >

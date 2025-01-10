@@ -19,8 +19,13 @@ import ZustandIcon from '@/assets/libbrariesAndFrameworks/zustand.svg'
 import MongoIcon from '@/assets/db/mongodb.svg'
 import { AnimatedTooltip } from '@/components/AnimatedTooltip'
 
+type TSkillItem = {
+  id: number
+  name: string
+  image: React.ReactNode
+}
 const MySkills = () => {
-  const langsAndTools = [
+  const langsAndTools: TSkillItem[] = [
     { id: 1, name: 'HTML', image: HtmlIcon },
     { id: 2, name: 'CSS', image: CssIcon },
     { id: 3, name: 'JavaScript', image: JavascriptIcon },
@@ -58,18 +63,33 @@ const MySkills = () => {
   )
 }
 
-const SkillCard = ({ title, items }: { title: string; items: any[] }) => {
+interface SkillCardProps {
+  title: string
+  items: TSkillItem[]
+}
+
+const SkillCard = ({ title, items }: SkillCardProps) => {
   return (
     <div className='space-y-6'>
       <p className='text-lg font-medium tracking-widest'>{title}</p>
       <div className='flex flex-wrap gap-10'>
-        {items.map((item) => (
-          <motion.div key={item.name} className='h-14'>
-            <AnimatedTooltip item={item} />
-          </motion.div>
-        ))}
+        {items.map((item) => {
+          return <Skill key={item.id} item={item} />
+        })}
       </div>
     </div>
+  )
+}
+
+interface SkillProps {
+  item: TSkillItem
+}
+
+const Skill = ({ item }: SkillProps) => {
+  return (
+    <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.2, delay: (item.id / 100) * 3 }} viewport={{ once: true }} className='h-14'>
+      <AnimatedTooltip item={item as any} />
+    </motion.div>
   )
 }
 

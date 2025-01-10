@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useMenuStore } from '@/store/useMenuStore'
+import { useCursorStore } from '@/store/useCursorStore'
 
 const AnimatedMenuToggle = () => {
   const { isMenuOpen, toggleMenu } = useMenuStore()
+  const { toggleCursor } = useCursorStore()
   const buttonRef = useRef<HTMLButtonElement>(null)
   const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [buttonHeight, setButtonHeight] = useState<number>(48)
@@ -50,6 +52,10 @@ const AnimatedMenuToggle = () => {
 
     setIsClickable(false)
     toggleMenu(!isMenuOpen)
+
+    if (isMenuOpen) {
+      toggleCursor(false)
+    }
 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
