@@ -7,6 +7,7 @@ import Menu from '@/components/Menu/Menu'
 import { MySkills } from '@/components/MySkills'
 import { Projects } from '@/components/Projects'
 import TextRevealByWord from '@/components/ui/text-reveal'
+import { useIsMobile } from '@/hooks/use-mobile'
 import useLenis from '@/hooks/useLenis'
 import { Header } from '@/layouts/header'
 import { useCursorStore } from '@/store/useCursorStore'
@@ -15,12 +16,13 @@ import { useEffect, useState } from 'react'
 export default function Home() {
   useLenis()
   const { isCursorVisible } = useCursorStore()
+  const isMobile = useIsMobile()
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [slowPosition, setSlowPosition] = useState({ x: 0, y: 0 })
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
-    if (!isCursorVisible) return
+    if (!isCursorVisible || isMobile) return
 
     let timeout: NodeJS.Timeout
     const handleMouseMove = (event: MouseEvent) => {
@@ -37,7 +39,7 @@ export default function Home() {
       window.removeEventListener('mousemove', handleMouseMove)
       clearTimeout(timeout)
     }
-  }, [isCursorVisible])
+  }, [isCursorVisible, isMobile])
 
   const updateDimensions = () => {
     const { innerWidth, innerHeight } = window
@@ -57,7 +59,7 @@ export default function Home() {
     <div className={`flex flex-col gap-10 bg-black text-white ${isCursorVisible ? 'cursor-none' : 'cursor-default'} `}>
       <Menu />
       {dimensions.height > 0 && <CenteredPixelTransition dimensions={dimensions} />}
-      {isCursorVisible && (
+      {isCursorVisible && !isMobile && (
         <>
           <div
             className='pointer-events-none fixed z-[130] h-4 w-4 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-white'
@@ -76,7 +78,7 @@ export default function Home() {
         </>
       )}
       <Header />
-      <Hero />
+      {/* <Hero />
       <div className='flex flex-col gap-4'>
         <div className='z-10 flex min-h-64 items-center justify-center'>
           <TextRevealByWord text='My mission is to bridge the gap between design and development, ensuring a harmonious and cohesive user experience.' />
@@ -89,7 +91,7 @@ export default function Home() {
         </div>
       </div>
       <Projects />
-      <Donations />
+      <Donations /> */}
     </div>
   )
 }

@@ -26,7 +26,7 @@ export default function Menu() {
   return (
     <motion.div
       style={{ display: isMenuOpen ? 'flex' : 'none' }}
-      className='fixed z-[110] flex h-[90vh] w-full flex-col items-center justify-center gap-10'
+      className='fixed z-[110] flex h-dvh w-full flex-col items-center justify-center gap-6'
       variants={anim}
       initial='initial'
       animate={isMenuOpen ? 'open' : 'closed'}
