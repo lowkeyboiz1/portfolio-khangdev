@@ -43,7 +43,7 @@ export default function MinimalistVietQRDonation() {
   }
 
   return (
-    <div className='my-20 bg-black p-4 text-white page'>
+    <div id='donate' className='my-20 bg-black p-4 text-white page'>
       <div className='mx-auto space-y-8'>
         <div>
           <h2 className='mb-4 flex items-center gap-2 text-4xl font-bold text-[#ff6347] md:text-5xl'>

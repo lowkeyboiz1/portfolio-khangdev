@@ -49,7 +49,7 @@ const Projects = () => {
   const x = useTransform(scrollYProgress, [0, 1], ['2%', '-200%'])
 
   return (
-    <section ref={targetRef} className='relative left-10 h-[150vh] w-[calc(100vw-100px)] !px-0 page'>
+    <section id='projects' ref={targetRef} className='relative left-10 h-[150vh] w-[calc(100vw-100px)] !px-0 page'>
       <div className='sticky top-40'>
         <div className='gradient-text text-6xl font-bold'>My Projects</div>
         <div className='mt-2 max-w-sm text-2xl font-medium leading-[2] md:max-w-lg'>Some things I&apos;ve built with love, expertise and a pinch of magical ingredients.</div>

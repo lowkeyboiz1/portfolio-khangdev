@@ -2,21 +2,26 @@
 
 import { Donations } from '@/components/Donations'
 import { Hero } from '@/components/Hero'
+import CenteredPixelTransition from '@/components/Menu/CenteredPixelTransition'
+import Menu from '@/components/Menu/Menu'
 import { MySkills } from '@/components/MySkills'
 import { Projects } from '@/components/Projects'
 import TextRevealByWord from '@/components/ui/text-reveal'
+import useLenis from '@/hooks/useLenis'
 import { Header } from '@/layouts/header'
 import { useCursorStore } from '@/store/useCursorStore'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
+  useLenis()
   const { isCursorVisible } = useCursorStore()
-
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [slowPosition, setSlowPosition] = useState({ x: 0, y: 0 })
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
     if (!isCursorVisible) return
+
     let timeout: NodeJS.Timeout
     const handleMouseMove = (event: MouseEvent) => {
       const { clientX, clientY } = event
@@ -34,19 +39,36 @@ export default function Home() {
     }
   }, [isCursorVisible])
 
+  const updateDimensions = () => {
+    const { innerWidth, innerHeight } = window
+
+    setDimensions({ width: innerWidth, height: innerHeight })
+  }
+
+  useEffect(() => {
+    updateDimensions()
+
+    window.addEventListener('resize', updateDimensions)
+
+    return () => window.removeEventListener('resize', updateDimensions)
+  }, [])
+
+  console.log({ dimensions })
   return (
-    <div className={`flex flex-col gap-10 bg-black text-white ${isCursorVisible ? 'cursor-none' : 'cursor-default'}`}>
+    <div className={`flex flex-col gap-10 bg-black text-white ${isCursorVisible ? 'cursor-none' : 'cursor-default'} `}>
+      <Menu />
+      {dimensions.height > 0 && <CenteredPixelTransition dimensions={dimensions} />}
       {isCursorVisible && (
         <>
           <div
-            className='pointer-events-none fixed z-[100] h-4 w-4 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-white'
+            className='pointer-events-none fixed z-[130] h-4 w-4 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-white'
             style={{
               left: `${position.x}px`,
               top: `${position.y}px`
             }}
           />
           <div
-            className='pointer-events-none fixed z-[100] size-10 -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[0.5px] border-[#6f6f6f]'
+            className='pointer-events-none fixed z-[130] size-10 -translate-x-1/2 -translate-y-1/2 transform rounded-full border-[0.5px] border-[#6f6f6f]'
             style={{
               left: `${slowPosition.x}px`,
               top: `${slowPosition.y}px`

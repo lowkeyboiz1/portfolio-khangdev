@@ -14,103 +14,37 @@ import NextIcon from '@/assets/libbrariesAndFrameworks/nextjs.svg'
 import ReactIcon from '@/assets/libbrariesAndFrameworks/react.svg'
 import ReduxIcon from '@/assets/libbrariesAndFrameworks/redux.svg'
 import TailwindIcon from '@/assets/libbrariesAndFrameworks/tailwindcss.svg'
-// import ShadcnIcon from '@/assets/libbrariesAndFrameworks/shadcn.png'
 import ZustandIcon from '@/assets/libbrariesAndFrameworks/zustand.svg'
 
 import MongoIcon from '@/assets/db/mongodb.svg'
-import { AnimatedTooltip } from '../AnimatedTooltip'
+import { AnimatedTooltip } from '@/components/AnimatedTooltip'
 
 const MySkills = () => {
   const langsAndTools = [
-    {
-      id: 1,
-      name: 'HTML',
-      image: HtmlIcon
-    },
-    {
-      id: 2,
-      name: 'CSS',
-      image: CssIcon
-    },
-    {
-      id: 3,
-      name: 'JavaScript',
-      image: JavascriptIcon
-    },
-    {
-      id: 4,
-      name: 'TypeScript',
-      image: TypeScriptIcon
-    },
-    {
-      id: 5,
-      name: 'Sass',
-      image: SassIcon
-    },
-    {
-      id: 6,
-      name: 'Node.js',
-      image: NodeIcon
-    },
-    {
-      id: 7,
-      name: 'Figma',
-      image: FigmaIcon
-    },
-    {
-      id: 8,
-      name: 'Tanstack Query',
-      image: TanstackIcon
-    }
+    { id: 1, name: 'HTML', image: HtmlIcon },
+    { id: 2, name: 'CSS', image: CssIcon },
+    { id: 3, name: 'JavaScript', image: JavascriptIcon },
+    { id: 4, name: 'TypeScript', image: TypeScriptIcon },
+    { id: 5, name: 'Sass', image: SassIcon },
+    { id: 6, name: 'Node.js', image: NodeIcon },
+    { id: 7, name: 'Figma', image: FigmaIcon },
+    { id: 8, name: 'Tanstack Query', image: TanstackIcon }
   ]
 
   const librariesAndFrameworks = [
-    {
-      id: 9,
-      name: 'React',
-      image: ReactIcon
-    },
-    {
-      id: 10,
-      name: 'Next.js',
-      image: NextIcon
-    },
-    {
-      id: 12,
-      name: 'Tailwind',
-      image: TailwindIcon
-    },
-    {
-      id: 11,
-      name: 'Next UI',
-      image: '/nextui.png'
-    },
+    { id: 9, name: 'React', image: ReactIcon },
+    { id: 10, name: 'Next.js', image: NextIcon },
+    { id: 12, name: 'Tailwind', image: TailwindIcon },
+    { id: 11, name: 'Next UI', image: '/nextui.png' },
+    { id: 13, name: 'Shadcn', image: '/shadcn.png' },
+    { id: 14, name: 'Redux', image: ReduxIcon },
+    { id: 15, name: 'Zustand', image: ZustandIcon }
+  ]
 
-    {
-      id: 13,
-      name: 'Shadcn',
-      image: '/shadcn.png'
-    },
-    {
-      id: 14,
-      name: 'Redux',
-      image: ReduxIcon
-    },
-    {
-      id: 15,
-      name: 'Zustand',
-      image: ZustandIcon
-    }
-  ]
-  const db = [
-    {
-      id: 16,
-      name: 'MongoDB',
-      image: MongoIcon
-    }
-  ]
+  const db = [{ id: 16, name: 'MongoDB', image: MongoIcon }]
+
   return (
-    <div className='flex flex-col gap-14 py-10 page'>
+    <motion.div id='skills' className='flex flex-col gap-14 py-10 page'>
       <div className='space-y-2'>
         <div className='gradient-text text-6xl font-bold'>My Skills</div>
         <div className='mt-2 max-w-sm text-2xl font-medium leading-[2] md:max-w-3xl'>I like to take responsibility to craft aesthetic user experience using modern frontend architecture.</div>
@@ -120,17 +54,17 @@ const MySkills = () => {
         <SkillCard title='LIBRARIES AND FRAMEWORKS' items={librariesAndFrameworks} />
         <SkillCard title='DATABASES' items={db} />
       </div>
-    </div>
+    </motion.div>
   )
 }
 
-const SkillCard = ({ title, items }: { title: string; items: { id: number; name: string; image: string }[] }) => {
+const SkillCard = ({ title, items }: { title: string; items: any[] }) => {
   return (
     <div className='space-y-6'>
       <p className='text-lg font-medium tracking-widest'>{title}</p>
-      <div className='flex gap-10'>
-        {items.map((item, index) => (
-          <motion.div initial={{ opacity: 0, x: 100 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: 0.1 * index }} key={item.name} className='h-14'>
+      <div className='flex flex-wrap gap-10'>
+        {items.map((item) => (
+          <motion.div key={item.name} className='h-14'>
             <AnimatedTooltip item={item} />
           </motion.div>
         ))}

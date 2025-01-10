@@ -17,18 +17,29 @@ const ScratchToReveal: React.FC<ScratchToRevealProps> = ({ width, height, minScr
   const [isScratching, setIsScratching] = useState(false)
   const [isComplete, setIsComplete] = useState(false)
   const controls = useAnimation()
+
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas?.getContext('2d')
     if (canvas && ctx) {
+      // Fill the background with a base color
       ctx.fillStyle = '#ccc'
       ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      // Create a gradient
       const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height)
       gradient.addColorStop(0, gradientColors[0])
       gradient.addColorStop(0.5, gradientColors[1])
       gradient.addColorStop(1, gradientColors[2])
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      // Add centered text
+      ctx.fillStyle = 'white'
+      ctx.font = 'bold 24px Arial'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText('Scratch Me 🌟', canvas.width / 2, canvas.height / 2)
     }
   }, [gradientColors])
 
@@ -72,6 +83,7 @@ const ScratchToReveal: React.FC<ScratchToRevealProps> = ({ width, height, minScr
       document.removeEventListener('touchend', handleDocumentTouchEnd)
       document.removeEventListener('touchcancel', handleDocumentTouchEnd)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isScratching])
 
   const handleMouseDown = () => {

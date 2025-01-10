@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
+import { useMenuStore } from '@/store/useMenuStore'
 
 const AnimatedMenuToggle = () => {
+  const { isMenuOpen, toggleMenu } = useMenuStore()
   const buttonRef = useRef<HTMLButtonElement>(null)
-  const [isOpen, setIsOpen] = useState(false)
-  const toggleMenu = () => setIsOpen(!isOpen)
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [buttonHeight, setButtonHeight] = useState<number>(48)
+  const [isClickable, setIsClickable] = useState(true)
 
   const topLineVariants = {
     closed: { rotate: 0, translateY: 0 },
@@ -16,7 +18,7 @@ const AnimatedMenuToggle = () => {
 
   const middleLineVariants = {
     closed: { opacity: 1, x: 0 },
-    open: { opacity: 0, x: 40 }
+    open: { opacity: 0, x: 100 }
   }
 
   const bottomLineVariants = {
@@ -39,11 +41,44 @@ const AnimatedMenuToggle = () => {
     }
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : 'auto'
+  }, [isMenuOpen])
+
+  const handleToggle = () => {
+    if (!isClickable) return
+
+    setIsClickable(false)
+    toggleMenu(!isMenuOpen)
+
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current)
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setIsClickable(true)
+    }, 500)
+  }
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current)
+      }
+    }
+  }, [])
+
   return (
-    <button ref={buttonRef} className='flex size-12 flex-col items-center justify-center gap-0.5' onClick={toggleMenu} aria-label={isOpen ? 'Close menu' : 'Open menu'}>
-      <motion.div className='mb-1.5 h-1 w-10 rounded-full bg-white' variants={topLineVariants} animate={isOpen ? 'open' : 'closed'} transition={{ duration: 0.3 }} />
-      <motion.div className='mb-1.5 h-1 w-10 rounded-full bg-white' variants={middleLineVariants} animate={isOpen ? 'open' : 'closed'} transition={{ duration: 0.3 }} />
-      <motion.div className='h-1 w-10 rounded-full bg-white' variants={bottomLineVariants} animate={isOpen ? 'open' : 'closed'} transition={{ duration: 0.3 }} />
+    <button
+      ref={buttonRef}
+      className='z-[120] flex size-12 flex-col items-center justify-center gap-0.5'
+      onClick={handleToggle}
+      aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+      style={{ pointerEvents: isClickable ? 'auto' : 'none' }}
+    >
+      <motion.div className='mb-1.5 h-1 w-10 rounded-full bg-white' variants={topLineVariants} animate={isMenuOpen ? 'open' : 'closed'} transition={{ duration: 0.3 }} />
+      <motion.div className='mb-1.5 h-1 w-10 rounded-full bg-white' variants={middleLineVariants} animate={isMenuOpen ? 'open' : 'closed'} transition={{ duration: 0.3 }} />
+      <motion.div className='h-1 w-10 rounded-full bg-white' variants={bottomLineVariants} animate={isMenuOpen ? 'open' : 'closed'} transition={{ duration: 0.3 }} />
     </button>
   )
 }

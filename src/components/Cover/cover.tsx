@@ -22,7 +22,7 @@ export const Cover = ({ children, className }: { children?: React.ReactNode; cla
       const positions = Array.from({ length: numberOfBeams }, (_, i) => (i + 1) * (height / (numberOfBeams + 1)))
       setBeamPositions(positions)
     }
-  }, [ref.current])
+  }, [])
 
   //test
   return (
