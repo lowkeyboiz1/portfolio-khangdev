@@ -35,36 +35,41 @@ export default function MinimalistVietQRDonation() {
   }
 
   const handleCustomAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    if (/^\d*$/.test(value)) {
-      setCustomAmount(value)
-      setAmount(value)
+    const rawValue = e.target.value.replace(/,/g, '')
+    if (/^\d*$/.test(rawValue)) {
+      if (rawValue === '') {
+        setCustomAmount('')
+        setAmount('')
+      } else {
+        setCustomAmount(parseInt(rawValue).toLocaleString())
+        setAmount(rawValue)
+      }
     }
   }
 
   return (
     <div id='donate' className='my-20 bg-black p-4 text-white page'>
-      <div className='mx-auto space-y-8'>
+      <div className='mx-auto flex flex-col gap-8'>
         <div>
           <h2 className='mb-4 flex items-center gap-2 text-4xl font-bold text-[#ff6347] md:text-5xl'>
             Donate
             <span className='text-yellow-500'>✨</span>
           </h2>
-          <p className='mt-2 max-w-sm text-2xl font-medium leading-[2] md:max-w-3xl'>
+          <p className='mt-2 max-w-none text-lg font-medium leading-[1.25] md:max-w-3xl xl:max-w-3xl xl:text-2xl xl:leading-[2]'>
             Your generosity fuels the spark of creativity, shaping a future filled with groundbreaking innovations and transformative possibilities
           </p>
         </div>
 
-        <div className='space-y-8'>
+        <div className='flex flex-col gap-8'>
           <div>
             <div className='mb-2 flex items-center gap-2'>
               <Zap className='h-5 w-5 text-[#ff6347]' />
-              <h3 className='text-2xl font-semibold'>Be the Force Behind Change 🚀</h3>
+              <h3 className='text-xl font-semibold xl:text-2xl'>Be the Force Behind Change 🚀</h3>
             </div>
-            <p className='text-xl text-gray-400'>Your support turns small steps into giant leaps</p>
+            <p className='text-lg text-gray-400 xl:text-xl'>Your support turns small steps into giant leaps</p>
           </div>
 
-          <div className='relative mx-auto flex w-96 items-center justify-center overflow-hidden rounded-xl'>
+          <div className='relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-xl xl:w-96'>
             <Image
               alt='VietQR'
               src={`https://img.vietqr.io/image/vcb-1017757502-compact2.jpg?amount=${amount}&addInfo=${userMessage.trim()}`}
@@ -73,7 +78,7 @@ export default function MinimalistVietQRDonation() {
               className='pointer-events-none size-full select-none object-cover'
             />
           </div>
-          <div className='space-y-2'>
+          <div className='flex flex-col gap-2'>
             <div className='flex items-center gap-2'>
               <Star className='h-4 w-4 text-yellow-500' />
               <span>Select Amount (VND)</span>
@@ -91,7 +96,7 @@ export default function MinimalistVietQRDonation() {
             </div>
           </div>
 
-          <div className='space-y-2'>
+          <div className='flex flex-col gap-2'>
             <div className='flex items-center gap-2'>
               <Gift className='h-4 w-4 text-[#ff6347]' />
               <span>Custom Amount (VND)</span>
@@ -99,7 +104,7 @@ export default function MinimalistVietQRDonation() {
             <Input value={customAmount} onChange={handleCustomAmountChange} placeholder='Enter custom amount' className='border-zinc-800 bg-zinc-900 text-white placeholder:text-gray-400' />
           </div>
 
-          <div className='space-y-2'>
+          <div className='flex flex-col gap-2'>
             <div className='flex items-center gap-2'>
               <MessageCircle className='h-4 w-4 text-[#ff6347]' />
               <span>Your Message (Optional)</span>
@@ -113,7 +118,7 @@ export default function MinimalistVietQRDonation() {
             />
           </div>
 
-          <div className='space-y-3 rounded-lg bg-zinc-900 p-4'>
+          <div className='flex flex-col gap-3 rounded-lg bg-zinc-900 p-4'>
             <div className='flex items-center justify-between'>
               <span className='text-gray-400'>Account Number</span>
               <div className='flex items-center gap-2'>

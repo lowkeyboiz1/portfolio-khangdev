@@ -9,6 +9,7 @@ import { useCursorStore } from '@/store/useCursorStore'
 import confetti from 'canvas-confetti'
 import { motion } from 'framer-motion'
 import { Facebook, Github, Instagram } from 'lucide-react'
+import Tiktok from '@/assets/Icons/tiktok.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef } from 'react'
@@ -24,13 +25,18 @@ const Hero = () => {
     },
     {
       name: 'Instagram',
-      url: 'https://www.instagram.com/lowkeyboiz1/',
+      url: 'https://www.instagram.com/lvkhang_',
       icon: Instagram
     },
     {
       name: 'Facebook',
       url: 'https://www.facebook.com/lowkeyboiz1',
       icon: Facebook
+    },
+    {
+      name: 'Tiktok',
+      url: 'https://www.tiktok.com/@sheepcutee',
+      icon: Tiktok // Keep the imported Tiktok SVG here
     }
   ]
 
@@ -43,9 +49,10 @@ const Hero = () => {
     if (isCursorVisible) return
     toggleCursor(true)
   }
+
   const handleComplete = () => {
     if (!containerRef.current) return
-    const rect = (containerRef.current as HTMLDivElement).getBoundingClientRect() // Get the bounding box of the container
+    const rect = (containerRef.current as HTMLDivElement).getBoundingClientRect()
 
     const defaults = {
       spread: 360,
@@ -62,8 +69,8 @@ const Hero = () => {
       scalar: 1.2,
       shapes: ['star'],
       origin: {
-        x: (rect.left + rect.right) / 2 / window.innerWidth, // X position centered
-        y: (rect.top + rect.bottom) / 2 / window.innerHeight // Y position centered
+        x: (rect.left + rect.right) / 2 / window.innerWidth,
+        y: (rect.top + rect.bottom) / 2 / window.innerHeight
       }
     })
 
@@ -73,15 +80,16 @@ const Hero = () => {
       scalar: 0.75,
       shapes: ['circle'],
       origin: {
-        x: (rect.left + rect.right) / 2 / window.innerWidth, // X position centered
-        y: (rect.top + rect.bottom) / 2 / window.innerHeight // Y position centered
+        x: (rect.left + rect.right) / 2 / window.innerWidth,
+        y: (rect.top + rect.bottom) / 2 / window.innerHeight
       }
     })
   }
+
   return (
-    <div id='home' className='grid justify-center gap-10 space-y-10 py-10 page lg:grid-cols-3 lg:justify-start 2xl:py-44' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
-      <motion.div initial={{ opacity: 0, x: -100 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }} className='col-span-2 space-y-6'>
-        <h1 className='3xl:7xl relative z-20 mt-6 max-w-7xl bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 bg-clip-text py-6 text-4xl font-semibold text-transparent dark:from-neutral-800 dark:via-white dark:to-white md:text-4xl lg:text-5xl xl:text-6xl'>
+    <div id='home' className='gap-10 page lg:grid lg:grid-cols-3 lg:py-10 xl:justify-center 2xl:space-y-10 2xl:py-44' onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
+      <motion.div initial={{ opacity: 0, x: -100 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.4 }} className='col-span-2 2xl:space-y-6'>
+        <h1 className='3xl:7xl relative z-20 mt-4 max-w-7xl bg-gradient-to-b from-neutral-800 via-neutral-700 to-neutral-700 bg-clip-text text-4xl font-semibold text-transparent dark:from-neutral-800 dark:via-white dark:to-white md:text-4xl lg:text-5xl xl:mt-6 xl:py-6 xl:text-6xl'>
           Hi, I&apos;m <Cover>Vika</Cover>, <br />a{' '}
           <span className='relative'>
             <span className='text-white'>Frontend Developer</span>
@@ -93,30 +101,24 @@ const Hero = () => {
             />
           </span>
         </h1>
-        <motion.div
-          ref={containerRef}
-          className='relative w-full'
-          initial={{ opacity: 0, x: -100, scale: 0.5, rotate: -45 }}
-          animate={{ opacity: 1, x: 0, scale: 1, rotate: 0 }}
-          transition={{ duration: 0.4 }}
-        >
-          <div className='flex w-full items-center justify-center overflow-hidden rounded-2xl border-2 lg:hidden'>
-            <div className='size-full'>
-              <Image src='/hero.jpg' alt='hero' width={360} height={360} className='size-full object-cover' />
-            </div>
-          </div>
-        </motion.div>
+
         <div className='flex items-center gap-5'>
           {socialLinks.map((link) => (
             <MagneticWrapper key={link.name}>
               <Link href={link.url} className='group p-10'>
-                <link.icon className='size-[30px] duration-200 group-hover:text-default' />
+                {link.name === 'Tiktok' ? (
+                  <div className='size-[20px] xl:size-[26px]'>
+                    <Image src={link.icon} alt='Tiktok Icon' width={30} height={30} className='size-full duration-200 group-hover:text-default' />
+                  </div>
+                ) : (
+                  <link.icon className='size-[24px] duration-200 group-hover:text-default xl:size-[30px]' />
+                )}
               </Link>
             </MagneticWrapper>
           ))}
         </div>
-        <ShinyButton className='px-10 py-4'>
-          <HyperText delay={500} duration={400} className='text-xl'>
+        <ShinyButton className='px-6 py-2 xl:px-10 xl:py-4'>
+          <HyperText delay={500} duration={400} className='text-sm xl:text-xl'>
             Let&apos;s talk
           </HyperText>
         </ShinyButton>
@@ -129,17 +131,24 @@ const Hero = () => {
         transition={{ duration: 0.4 }}
       >
         <ScratchToReveal
-          width={360}
-          height={360}
+          width={320}
+          height={320}
           minScratchPercentage={70}
           className='hidden w-full items-center justify-center overflow-hidden rounded-2xl border-2 lg:flex'
           onComplete={handleComplete}
           gradientColors={['#FFA07A', '#FFA68D', '#FFD39B']}
         >
           <div className='size-full'>
-            <Image src='/hero.jpg' alt='hero' width={360} height={360} className='size-full object-cover' />
+            <Image src='/hero.jpg' alt='hero' width={320} height={320} className='size-full object-cover' />
           </div>
         </ScratchToReveal>
+      </motion.div>
+      <motion.div className='mt-5 w-full lg:hidden' initial={{ opacity: 0, x: -100, scale: 0.5, rotate: -45 }} animate={{ opacity: 1, x: 0, scale: 1, rotate: 0 }} transition={{ duration: 0.4 }}>
+        <div className='mx-auto flex w-full max-w-[320px] items-center justify-center overflow-hidden rounded-2xl border-2 md:max-w-[400px]'>
+          <div className='size-full'>
+            <Image src='/hero.jpg' alt='hero' width={360} height={360} className='size-full object-cover' />
+          </div>
+        </div>
       </motion.div>
     </div>
   )

@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { toast } from 'sonner'
 
 export const PinContainer = ({
   children,
@@ -26,8 +27,15 @@ export const PinContainer = ({
     setTransform('translate(-50%,-50%) rotateX(0deg) scale(1)')
   }
 
+  const handleClick = (e: React.MouseEvent) => {
+    if (!href) {
+      e.preventDefault()
+      toast.error('This project is not available yet')
+    }
+  }
+
   return (
-    <Link target='_blank' className={cn('group/pin relative z-50 cursor-pointer', containerClassName)} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} href={href || '/'}>
+    <Link target='_blank' className={cn('group/pin relative z-50 cursor-pointer', containerClassName)} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} href={href || '/'} onClick={handleClick}>
       <div
         style={{
           perspective: '1000px',

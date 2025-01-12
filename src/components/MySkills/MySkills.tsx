@@ -49,12 +49,14 @@ const MySkills = () => {
   const db = [{ id: 16, name: 'MongoDB', image: MongoIcon }]
 
   return (
-    <motion.div id='skills' className='flex flex-col gap-14 py-10 page'>
-      <div className='space-y-2'>
-        <div className='gradient-text text-6xl font-bold'>My Skills</div>
-        <div className='mt-2 max-w-sm text-2xl font-medium leading-[2] md:max-w-3xl'>I like to take responsibility to craft aesthetic user experience using modern frontend architecture.</div>
+    <motion.div id='skills' className='flex flex-col gap-10 py-10 page xl:gap-14'>
+      <div className='flex flex-col gap-2'>
+        <div className='gradient-text text-4xl font-bold xl:text-6xl'>My Skills</div>
+        <div className='mt-2 max-w-sm text-lg font-medium leading-[1.25] md:max-w-3xl xl:text-2xl xl:leading-[2]'>
+          I like to take responsibility to craft aesthetic user experience using modern frontend architecture.
+        </div>
       </div>
-      <div className='space-y-6'>
+      <div className='flex flex-col gap-6'>
         <SkillCard title='LANGUAGES AND TOOLS' items={langsAndTools} />
         <SkillCard title='LIBRARIES AND FRAMEWORKS' items={librariesAndFrameworks} />
         <SkillCard title='DATABASES' items={db} />
@@ -70,9 +72,9 @@ interface SkillCardProps {
 
 const SkillCard = ({ title, items }: SkillCardProps) => {
   return (
-    <div className='space-y-6'>
+    <div className='flex flex-col gap-4 xl:gap-6'>
       <p className='text-lg font-medium tracking-widest'>{title}</p>
-      <div className='flex flex-wrap gap-10'>
+      <div className='flex flex-wrap gap-4 xl:gap-10'>
         {items.map((item) => {
           return <Skill key={item.id} item={item} />
         })}
@@ -87,7 +89,7 @@ interface SkillProps {
 
 const Skill = ({ item }: SkillProps) => {
   return (
-    <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.2, delay: (item.id / 100) * 3 }} viewport={{ once: true }} className='h-14'>
+    <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.2, delay: 0.15 + (item.id / 100) * 3 }} viewport={{ once: true }} className='h-10 xl:h-14'>
       <AnimatedTooltip item={item as any} />
     </motion.div>
   )

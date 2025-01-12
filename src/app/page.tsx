@@ -56,7 +56,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className={`flex flex-col gap-10 bg-black text-white ${isCursorVisible ? 'cursor-none' : 'cursor-default'} `}>
+    <div className={`flex flex-col gap-4 bg-black text-white xl:gap-10 ${isCursorVisible ? 'cursor-none' : 'cursor-default'} `}>
       <Menu />
       {dimensions.height > 0 && <CenteredPixelTransition dimensions={dimensions} />}
       {isCursorVisible && !isMobile && (
@@ -78,7 +78,7 @@ export default function Home() {
         </>
       )}
       <Header />
-      {/* <Hero />
+      <Hero />
       <div className='flex flex-col gap-4'>
         <div className='z-10 flex min-h-64 items-center justify-center'>
           <TextRevealByWord text='My mission is to bridge the gap between design and development, ensuring a harmonious and cohesive user experience.' />
@@ -91,7 +91,7 @@ export default function Home() {
         </div>
       </div>
       <Projects />
-      <Donations /> */}
+      <Donations />
     </div>
   )
 }
