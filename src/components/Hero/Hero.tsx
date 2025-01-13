@@ -30,7 +30,7 @@ const Hero = () => {
     },
     {
       name: 'Facebook',
-      url: 'https://www.facebook.com/lowkeyboiz1',
+      url: 'https://www.facebook.com/luong.khang.75457',
       icon: Facebook
     },
     {
