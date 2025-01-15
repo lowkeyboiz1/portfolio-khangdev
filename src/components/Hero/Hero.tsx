@@ -18,11 +18,11 @@ const Hero = () => {
   const { toggleCursor, isCursorVisible } = useCursorStore()
   const containerRef = useRef(null)
   const socialLinks = [
-    {
-      name: 'Github',
-      url: 'https://github.com/lowkeyboiz1',
-      icon: Github
-    },
+    // {
+    //   name: 'Github',
+    //   url: 'https://github.com/lowkeyboiz1',
+    //   icon: Github
+    // },
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/lvkhang_',

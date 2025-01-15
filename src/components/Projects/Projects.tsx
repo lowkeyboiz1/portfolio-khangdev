@@ -14,7 +14,7 @@ const Projects = () => {
   const projects = [
     {
       title: 'Trello Clone',
-      href: 'https://trello-web-yv1v.vercel.app/',
+      href: 'https://trello.vikadev.com',
       description: 'A Trello clone built with Fullstack (Next.js, Tailwind CSS, ExpressJS, NextUI, MongoDB).'
     },
     {
@@ -24,12 +24,12 @@ const Projects = () => {
     },
     {
       title: 'Youtube Clone',
-      href: 'https://youtube-clone-tau-ashy.vercel.app/',
+      href: 'https://youtube.vikadev.com',
       description: 'A Youtube clone built with Fullstack (React.js, Tailwind CSS, Nodejs, ExpressJS, MongoDB).'
     },
     {
       title: 'Shop T-Shirt 3D',
-      href: 'https://shop-threejs.vercel.app',
+      href: 'https://shop3d.vikadev.com',
       description: 'A 3D shop for T-Shirt use Three.js.'
     },
     {

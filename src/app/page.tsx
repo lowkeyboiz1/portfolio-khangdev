@@ -7,6 +7,7 @@ import Menu from '@/components/Menu/Menu'
 import { MySkills } from '@/components/MySkills'
 import { Projects } from '@/components/Projects'
 import TextRevealByWord from '@/components/ui/text-reveal'
+import { WorkExperience } from '@/components/WorkExperience/WorkExperience'
 import { useIsMobile } from '@/hooks/use-mobile'
 import useLenis from '@/hooks/useLenis'
 import { Header } from '@/layouts/header'
@@ -85,11 +86,13 @@ export default function Home() {
         </div>
       </div>
       <MySkills />
+      {/* <WorkExperience /> */}
       <div className='flex flex-col gap-4'>
         <div className='z-10 flex min-h-64 items-center justify-center'>
           <TextRevealByWord text='I have a strong obsession for attention to detail.' />
         </div>
       </div>
+
       <Projects />
       <Donations />
     </div>
